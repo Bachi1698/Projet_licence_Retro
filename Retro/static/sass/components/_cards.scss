@@ -1,0 +1,23 @@
+// card all projects
+.box-card {
+    cursor: pointer;
+    
+    .card-all_projects {
+        height: 15rem;
+        background-color: $color-white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 17px -6px rgba(0,0,0,0.47);
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        padding: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .fa {
+            padding-left: 5px;
+        }
+    }
+}

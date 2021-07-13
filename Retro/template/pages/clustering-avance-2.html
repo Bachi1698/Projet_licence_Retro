@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div id='app'>
+        <div class="dash">
+            <!-- sidebar -->
+            <div class="sidebar-main">
+                <i class="fa fa-close iconeClose" aria-hidden="true"></i>
+
+                <div id="accordion">
+                    <div class="box-menu">
+                        <ul id="headingOne" data-toggle="collapse" data-target="#collapse1"
+                            aria-expanded="true" aria-controls="collapse1">
+                            <li>
+                                <div class="sidebar-menu">
+                                    <h2>Nouveau projet</h2>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+
+                                <ul id="collapse1" class="collapse sidebar-menu--list" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Ouvrir un projet</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="headingTwo" data-toggle="collapse" data-target="#collapse2"
+                        aria-expanded="true" aria-controls="collapse2">
+                            <li>
+                                <div class="sidebar-menu">
+                                    <h2>Ouvrir un projet de l'historique</h2>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+
+                                <ul id="collapse2" class="collapse sidebar-menu--list" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box-menu">
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Enregistrer</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Enregistrer sous...</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box-menu">
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Statistiques</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Exporter la base de clusters</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul id="headingThree" data-toggle="collapse" data-target="#collapse3"
+                        aria-expanded="true" aria-controls="collapse3">
+                            <li>
+                                <div class="sidebar-menu">
+                                    <h2>Exporter la transcription</h2>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+
+                                <ul id="collapse3" class="collapse sidebar-menu--list" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                    <li class="sidebar-menu--list__item"><a href="#">Lorem ipsum</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Visualiser le document</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="box-menu">
+                        <ul>
+                            <li>
+                                <div class="sidebar-menu">
+                                    <a href="#"><h2>Fermer</h2></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- top nav -->
+            <div class="top-nav">
+                <div class="bars-menuLink">
+                    <i class="fa fa-bars icone" aria-hidden="true"></i>
+                    <a href="{% url 'single_doc' projet_doc.id %}" class="link">Document</a>
+                    <a href="{% url 'cluster_bilan' projet_doc.id %}" class="link" >Bilan</a>
+                    <a href="#" class="link active">Transcription</a>
+                </div>
+                <!-- btn interrupteur -->
+                <div class="toggle-button-cover">
+                    <div class="button-cover">
+                        <div class="button r" id="button-1">
+                            <input type="checkbox" class="checkbox">
+                            <div class="knobs"></div>
+                            <div class="layer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="content">
+
+                <!-- *** -->
+                <div class="thumbnails --clusterOne">
+                    <div class="filtre-search">
+                        <div class="filtre">
+                            <h4>Trier par taux de confi...</h4>
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </div>
+                        <div class="search"><i class="fa fa-search" aria-hidden="true"></i></div>
+                    </div>
+                    <div class="box-grid">
+                        {% for img in imgs %}
+                            <img src="{{ img.image.url }}" style='width: 100% !important; height: 100% !important'>
+                        {% endfor %}
+                    </div>
+                    <div class="myPagination">
+                        {% if imgs.has_previous %}
+                            <a href="?p={{ imgs.previous_page_number }}">
+                                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                        
+                            <span>Page {{ imgs.number }} sur {{ imgs.paginator.num_pages }}</span>
+
+                        {% if imgs.has_next %}
+                            <a href="?p={{ imgs.next_page_number }}">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- *** -->
+                <div class="content-view content-clustering --clusterTwo">
+                    <div class="avance">
+                        <div class="fonctionnaly">
+                            <div class="link">
+                                <a href="#"><span>Sélectionner</span></a>
+                                <a href="#"><span>Déplacer</span></a>
+                                {% for img in imgs %}
+                                    <a href="#" @click.prevent='post_cluster_image("{{img.id}}")'><span>Créer un nouveau cluster</span></a>
+                                {% endfor %}
+                            </div>
+                            <div class="direction">
+                                <i class="fa fa-reply" aria-hidden="true"></i>
+                                <i class="fa fa-share" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="box-grid">
+                            <div class="input-group --sub-input-group" class="input-email">
+                                <component v-for='line in lines'>
+                                    <div class="input-group">
+                                        <input type="text" v-model='line.content' class="form-control" />			
+                                        <span class="input-group-btn">
+                                            <button @click.prevent='valider(line)' :class="[line.checked ? 'btn-success' : 'btn-warning', 'btn btn-lg']" type="button">Valider</button>
+                                        </span>
+                                    </div>
+                                    <br/>
+                                <component>
+                            </div>
+                        </div>
+
+                        <div class="myPagination --left">
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            <span>Page 2 sur 9</span>
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Paramétrage du clustering</h5>
+                <i class="fa fa-times" aria-hidden="true" data-dismiss="modal" aria-label="Close"></i>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-row form-modal">
+                        <div class="col-12">
+                            <div class="form--group">
+                                <div class="input-group">
+                                    <label class="radio">
+                                        <input type="radio" value="vide" name="clusters"> 
+                                        <p>Utiliser une base de clusters vide</p>
+                                        <span></span>
+                                    </label>
+                                    <div class="input-group --sub-input-group">
+                                        <label class="radio --sub-radio">
+                                            <input type="radio" value="choisir" name="clustering"> 
+                                            <p>Choisir une méthode de clustering :</p>
+                                            <span></span>
+                                            <select name="" id="" class="select">
+                                                <option value="">0000</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="input-group --sub-input-group">
+                                        <label class="radio --sub-radio">
+                                            <input type="radio" value="importer" name="clustering"> 
+                                            <p>Importer un algorithme de clustering :</p>
+                                            <span></span>
+                                        </label>
+                                        <div class="input-group input-file" name="Fichier1">
+                                            <input type="text" class="form-control" />			
+                                            <span class="input-group-btn ml-4">
+                                                <button class="btn btn-default btn-choose" type="button">Parcourir</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form--group">
+                                <div class="input-group">
+                                    <label class="radio">
+                                        <input type="radio" value="existante" name="clusters"> 
+                                        <p>Utiliser une base de clusters existante</p>
+                                        <span></span>
+                                        <p>Importer une base de clusters :</p>
+                                    </label>
+                                    <div class="input-group input-file" name="Fichier1">
+                                        <input type="text" class="form-control" />			
+                                        <span class="input-group-btn ml-4">
+                                            <button class="btn btn-default btn-choose" type="button">Parcourir</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="checkbox-group">
+                                <label class="checkbox">
+                                    <input type="checkbox" value=""> 
+                                    <p>Me prévenir par mail, une fois le clustering terminé</p>
+                                    <span></span>
+                                </label>
+                                <input type="email" placeholder="Votre E-mail" class="input-email">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-standard" data-dismiss="modal">Annuler</button>
+                    <a href="clustering.html"><button type="button" class="btn-standard">Commencer</button></a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- script -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            delimiters: ["${", "}"],
+            data: {
+                lines: [],
+            },
+            methods: {
+                post_cluster_image: function(id) {
+                    let formData = new FormData();
+                    formData.append('idt', id);
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                    axios.post("{% url 'post_image_cluster' %}", formData, {})
+                    .then(response => {
+                        if (response.data.success) {
+                            this.lines = response.data.result
+                        } else {
+                            console.log(response.data.message)
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                },
+                valider: function(line) {
+                    let formData = new FormData();
+                    formData.append('idt', line.id);
+                    formData.append('content', line.content);
+                    axios.defaults.xsrfCookieName = 'csrftoken'
+                    axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+                    axios.post("{% url 'valider_line' %}", formData, {})
+                    .then(response => {
+                        if (response.data.success) {
+                            line.checked = true
+                        } else {
+                            console.log(response.data.message)
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    }) 
+                },
+            }
+        })
+    </script>
+</body>
+</html>

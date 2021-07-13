@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body>
+
+    <div class="accueil">
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div id="accordion">
+                <ul id="headingOne" data-toggle="collapse" data-target="#collapse1"
+                aria-expanded="true" aria-controls="collapse1">
+                    <li>
+                        <div class="sidebar-menu">
+                            {% if request.user.is_authenticated %}
+                            <h2><a href="{% url 'doc' %}">Nouveau projet</a></h2>
+                           {% else %}
+                            <h2><a href="{% url 'login' %}">Nouveau projet</a></h2>
+                            {% endif %}
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </div>
+
+                        <ul id="collapse1" class="collapse show sidebar-menu--list" aria-labelledby="headingOne" data-parent="#accordion">
+                            <li class="sidebar-menu--list__item"><a href="#">Transcription</a></li>
+                            <li class="sidebar-menu--list__item"><a href="#">Analyse Typographique</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <div class="sidebar-menu">
+                            <h2><a href="#">Ouvrir un projet</a></h2>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-bottom">
+                    <li><a href="#">Nouveautés</a></li>
+                    <li><a href="#">Informations</a></li>
+                    <li><a href="#">Quitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <div class="top-nav">
+                <h2 class="title">Vos projets</h2>
+                <div class="all_projects--title">
+                    <p>{{user.username}}</p>
+                    
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="login-btn"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    <!-- <p style="text-transform: capitalize" >{{user.username}}</p> -->
+                    {% else %}    
+                        <a href="{% url 'login' %}" class="login-btn"><i class="fa fa-user" style="margin-top:29px"></i></a>
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+            <!-- all projects -->
+            <div class="all_projects">
+                <div class="row">
+                    {% if request.user.is_authenticated %}
+                    {% for i in projet %}
+                    <div class="col-2">
+                        <div class="box-card">
+                            <div class="card-all_projects"><img src="{{i.image_projet.all.first.image.url}}" style="width: 100%; height: 100%;"></div>
+                            <h4>
+                                <span><a href="{% url 'single_doc' i.pk%}">{{i.nom}}</a></span>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h4>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <h1>Aucun projet</h1>
+
+                    {% endfor %}
+                    {% else %}
+                    <h1>Connectez vous pour créer et un projet et ou voir la liste des projets</h1>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- prise en main -->
+            <div class="prise-en-main">
+                <div class="btn-circle">
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+                <h3>Prise en main</h3>
+                <ul class="text">
+                    <li><a href="#">Accéder à la vidéo de présentation</a></li>
+                    <li><a href="#">Télecharger le manuel d'utilisation</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- script -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

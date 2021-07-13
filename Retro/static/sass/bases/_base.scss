@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+*:focus{
+    outline: none !important;
+}
+
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    color: $color-black;
+}
+
+body{
+    box-sizing: border-box;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+ul{
+    list-style: none;
+    margin-bottom: 0 !important;
+}
+
+a, a:hover{
+    text-decoration: none !important;
+}
+
+// utility 
+.--bold {
+    font-weight: 700;
+}
+
+.--clRed {
+    color: $c1;
+}

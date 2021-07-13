@@ -1,0 +1,36 @@
+
+@mixin respond-tabland {
+    @media only screen and (max-width: 1200px){ @content }
+};
+
+@mixin respond-tabport {
+    @media only screen and (max-width: 992px){ @content }
+};
+
+@mixin respond-tabportXs {
+    @media only screen and (max-width: 768px){ @content }
+};
+
+@mixin respond-phone {
+    @media only screen and (max-width: 600px){ @content }
+};
+
+@mixin respond-phoneXs {
+    @media only screen and (max-width: 485px){ @content }
+};
+
+@mixin respond-mobileL {
+    @media only screen and (max-width: 425px) { @content }
+};
+
+@mixin respond-phoneS {
+    @media only screen and (max-width: 400px){ @content }
+};
+
+@mixin respond-mobileM {
+    @media only screen and (max-width: 375px) { @content }
+};
+
+@mixin respond-mobileS {
+    @media only screen and (max-width: 320px) { @content }
+};
